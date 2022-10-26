@@ -1,5 +1,9 @@
 
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../Blog/Blog";
+import Courses from "../Courses/Courses";
+import Faq from "../Faq/Faq";
+import Home from "../Home/Home";
 import Main from "../Main/Main";
 
 export const router = createBrowserRouter([
@@ -8,16 +12,16 @@ export const router = createBrowserRouter([
       element: <Main />,
     //   errorElement: <ErrorPage />,
       children: [
-        // { path: "/", element: <Home /> },
+        { path: "/", element: <Home /> },
         {
           path: "/courses",
           loader: () => fetch("https://next-coder-server.vercel.app/courses"),
-        //   element: <Courses />,
+          element: <Courses />,
         },
-        // { path: "/blog", element: <Blog /> },
+        { path: "/blog", element: <Blog /> },
         // { path: "/register", element: <Register /> },
         // { path: "/login", element: <Login /> },
-        // { path: "/faq", element: <FAQ /> },
+        { path: "/faq", element: <Faq /> },
         {
           path: "option/:id",
           loader: async ({ params }) => {
