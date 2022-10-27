@@ -1,13 +1,15 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../Blog/Blog";
+import CheekOut from "../CheckOut/Checkout";
 import Courses from "../Courses/Courses";
 import Faq from "../Faq/Faq";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Main from "../Main/Main";
 import Notfound from "../Notfound/Notfound";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Signup from "../SignUp/Signup";
+import CourseDetails from "../CourseDetails/CourseDetails"
 
 export const router = createBrowserRouter([
     {
@@ -18,7 +20,7 @@ export const router = createBrowserRouter([
         { path: "/", element: <Home /> },
         {
           path: "/courses",
-          loader: () => fetch("https://next-coder-server.vercel.app/courses"),
+          loader: () => fetch("http://localhost:5000/courses"),
           element: <Courses />,
         },
         { path: "/blog", element: <Blog /> },
@@ -26,22 +28,28 @@ export const router = createBrowserRouter([
         { path: "/login", element: <Login /> },
         { path: "/faq", element: <Faq /> },
         {
-          path: "option/:id",
+          path: "courseDetails/:id",
           loader: async ({ params }) => {
             return fetch(
-              `https://next-coder-server.vercel.app/option/${params.id}`
+              `http://localhost:5000/courses/${params.id}`
             );
           },
-        //   element: <CourseDetails />,
+          element: <CourseDetails />,
         },
         {
           path: "course/:name",
           loader: async ({ params }) => {
             return fetch(
-              `https://next-coder-server.vercel.app/course/${params.name}`
+              `http://localhost:5000/courses/${params.name}`
             );
           },
-        //   element: <CheekOut />,
+        
+          element: (
+            <PrivateRoute>
+              <CheekOut />
+            </PrivateRoute>
+          ),
+          
         },
       ],
     },
