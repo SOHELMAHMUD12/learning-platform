@@ -4,13 +4,16 @@ import Blog from "../Blog/Blog";
 import Courses from "../Courses/Courses";
 import Faq from "../Faq/Faq";
 import Home from "../Home/Home";
+import Login from "../Login/Login";
 import Main from "../Main/Main";
+import Notfound from "../Notfound/Notfound";
+import Signup from "../SignUp/Signup";
 
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main />,
-    //   errorElement: <ErrorPage />,
+      errorElement: <Notfound />,
       children: [
         { path: "/", element: <Home /> },
         {
@@ -19,8 +22,8 @@ export const router = createBrowserRouter([
           element: <Courses />,
         },
         { path: "/blog", element: <Blog /> },
-        // { path: "/register", element: <Register /> },
-        // { path: "/login", element: <Login /> },
+        { path: "/signup", element: <Signup /> },
+        { path: "/login", element: <Login /> },
         { path: "/faq", element: <Faq /> },
         {
           path: "option/:id",
