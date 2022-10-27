@@ -31,7 +31,7 @@ const Courses = () => {
               key={index}
               className="py-5 font-bold mb-4 text-center bg-slate-700 text-gray-300 rounded-lg "
             >
-              <Link to={`/courseDetails/${course.id}`}>
+              <Link to={`/option/${course.id}`}>
                 <span className="">{course.name}</span>
               </Link>
             </p>
