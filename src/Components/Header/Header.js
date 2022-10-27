@@ -92,7 +92,7 @@ const Header = () => {
                     aria-label="FAQ"
                     title={user.displayName}
                     className="w-10 rounded-full"
-                    src={user.photoURL}
+                    src={user.display}
                     alt=""
                   />
                 </li>

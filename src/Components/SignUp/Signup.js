@@ -1,8 +1,79 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../UserContext/UserContext";
+import Swal from "sweetalert2";
 
 const Signup = () => {
+  const { logInWithGoogle, createUser, updateImageAndName, logInWithGithub } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+
+  const handleCreateUser = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    // const image = form.image.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name,  email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire("User Create Success", "", "success");
+        updateImageAndName(name)
+          .then(() => {
+            Swal.fire("Information Updated", "", "success");
+            navigate(from, { replace: true });
+          })
+          .catch((error) => {
+            Swal.fire("Opps", error.message, "error");
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+
+        Swal.fire("Opps", error.message, "error");
+      });
+  };
+
+
+  const handleGoogleSignIn = () => {
+    logInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire("Good job!", "User Login successful!", "success");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire("Opps", error.message, "error");
+      });
+  };
+
+
+
+  const handleGitSign = () => {
+    logInWithGithub()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire("User Login successful", "", "success");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire("Opps", error.message, "error");
+      });
+  };
+  
   return (
     <div>
       <div className="flex justify-center items-center pt-8">
@@ -14,7 +85,7 @@ const Signup = () => {
             </p>
           </div>
           <form
-            //   onSubmit={handleSubmit}
+              onSubmit={handleCreateUser}
             noValidate=""
             action=""
             className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -86,7 +157,7 @@ const Signup = () => {
           <div></div>
           <div className="flex justify-center space-x-4">
             <button
-              // onClick={handleGoogleSignin}
+              onClick={handleGoogleSignIn}
               aria-label="Log in with Google"
               title="Google Sign In"
               className="p-3 rounded-sm text-3xl"
@@ -95,7 +166,7 @@ const Signup = () => {
             </button>
 
             <button
-              // onClick={handleGoogleSignin}
+              onClick={handleGitSign}
               aria-label="Log in with GitHub"
               title="GitHub Sign In"
               className="p-3 rounded-sm text-3xl"
