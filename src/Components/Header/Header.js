@@ -1,8 +1,20 @@
 import React from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 import ph from "../../image/8217b80b-1a69-4fad-ab18-9c8053efbb9d.jpg";
+import { AuthContext } from "../UserContext/UserContext";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire("User Log Out", "", "success");
+      })
+      .catch((error) => {});
+  };
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -66,12 +78,49 @@ const Header = () => {
             <li>
               <NavLink to='/blog'>Blog</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to='/login'>Login</NavLink>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <NavLink to='/signup'>Signup</NavLink>
-            </li>
+            </li> */}
+            
+            {user && user.uid ? (
+              <>
+                <li>
+                  <img
+                    aria-label="FAQ"
+                    title={user.displayName}
+                    className="w-10 rounded-full"
+                    src={user.photoURL}
+                    alt=""
+                  />
+                </li>
+                <li>
+                  <NavLink
+                    onClick={handleLogOut}
+                    aria-label="logout"
+                    title="Logout"
+                    className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                    Logout
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink
+                    to="/login"
+                    aria-label="login"
+                    title="Login"
+                    
+                  >
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
