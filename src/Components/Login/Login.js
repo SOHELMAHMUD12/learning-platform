@@ -78,7 +78,6 @@ const Login = () => {
                 Email address
               </label>
               <input
-                // onBlur={(event) => setUserEmail(event.target.value)}
                 type="email"
                 name="email"
                 id="email"
@@ -107,7 +106,6 @@ const Login = () => {
 
           <div>
             <button
-              // type="submit"
               className="w-full px-8 py-3 font-semibold rounded-md bg-gray-900 text-gray-100"
             >
               Sign in
