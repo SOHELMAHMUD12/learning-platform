@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../UserContext/UserContext";
 import Swal from "sweetalert2";
 
-const Signup = () => {
+  const Signup = () => {
   const { logInWithGoogle, createUser, updateImageAndName, logInWithGithub } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -17,7 +17,6 @@ const Signup = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    // const image = form.image.value;
     const email = form.email.value;
     const password = form.password.value;
     console.log(name,  email, password);
@@ -38,11 +37,9 @@ const Signup = () => {
       })
       .catch((error) => {
         console.error(error);
-
         Swal.fire("Opps", error.message, "error");
       });
   };
-
 
   const handleGoogleSignIn = () => {
     logInWithGoogle()
@@ -57,8 +54,6 @@ const Signup = () => {
         Swal.fire("Opps", error.message, "error");
       });
   };
-
-
 
   const handleGitSign = () => {
     logInWithGithub()
@@ -96,7 +91,6 @@ const Signup = () => {
                   Name
                 </label>
                 <input
-                  // onBlur={(event) => setUserEmail(event.target.value)}
                   type="name"
                   name="name"
                   id="name"
@@ -111,7 +105,6 @@ const Signup = () => {
                   Email address
                 </label>
                 <input
-                  // onBlur={(event) => setUserEmail(event.target.value)}
                   type="email"
                   name="email"
                   id="email"
@@ -140,7 +133,6 @@ const Signup = () => {
 
             <div>
               <button
-                  // type='Submit'
                 className="w-full px-8 py-3 font-semibold rounded-md bg-gray-900 text-gray-100"
               >
                 Sign in

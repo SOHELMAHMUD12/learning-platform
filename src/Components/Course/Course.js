@@ -15,7 +15,6 @@ const Course = ({ course }) => {
               alt=""
               className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
             />
-            
             <div className="flex items-center text-xs">
               <span>Course Fee: {price}$</span>
             </div>

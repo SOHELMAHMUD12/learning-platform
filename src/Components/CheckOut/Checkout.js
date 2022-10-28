@@ -3,35 +3,27 @@ import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../UserContext/UserContext";
 
-
 const CheekOut = () => {
   const { user } = useContext(AuthContext);
   const info = useLoaderData();
-  console.log(info)
-;
+  console.log(user);
   return (
     <div className=" h-screen">
-      <div className=" w-80 mx-auto text-center bg-slate-300 rounded-lg ">
+      <div className=" w-80 mx-auto mt-10 text-center bg-slate-300 rounded-lg ">
         <h2 className="text-2xl font-bold text-center">User Information</h2>
-
         <div className="">
           <p className="text-center">
             <img
-              className="rounded-xl mx-auto w-16"
+              className="rounded-full mx-auto"
               src={user.photoURL}
-              alt=""
+              alt="user.photoURL"
             />
           </p>
+          <span className="py-auto text-lg font-bold">Name:{user.displayName}</span>
+          <p className="text-center uppercase font-bold  mt-1   text-2xl">
+         {user.providerId}
+          </p>
         </div>
-        <div>
-          <span className="py-auto text-lg font-bold">{user.displayName}</span>
-        </div>
-      </div>
-      <div>
-        <p className="text-center relative bg-slate-200 uppercase font-bold w-96 mx-auto mt-4 py-5 rounded-2xl text-5xl">
-          {info.name}{" "}
-          <span className="text-lg absolute top-0 right-2">${info.price}</span>
-        </p>
       </div>
     </div>
   );

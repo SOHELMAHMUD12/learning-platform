@@ -81,15 +81,6 @@ const Header = () => {
             {user && user.uid ? (
               <>
                 <li>
-                  <img
-                    aria-label="FAQ"
-                    title={user.displayName}
-                    className="w-10 rounded-full"
-                    src={user.display}
-                    alt=""
-                  />
-                </li>
-                <li>
                   <NavLink
                     onClick={handleLogOut}
                     aria-label="logout"

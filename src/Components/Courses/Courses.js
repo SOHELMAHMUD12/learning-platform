@@ -1,24 +1,10 @@
-// import React from 'react';
-
-// const Courses = () => {
-//     return (
-//         <div>
-//             <h1>this is course</h1>
-//         </div>
-//     );
-// };
-
-// export default Courses;
-
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Course from "../Course/Course";
-// import Course from "../Course";
 
 const Courses = () => {
   const courses = useLoaderData();
-  // const { name, id } = courses;
-  // console.log(courses);
+  
   return (
     <div className="grid lg:grid-cols-4 md:grid-cols-1 sm:grid-cols-1">
       <div className=" h-full w-full mx-auto bg-slate-600 rounded-xl ">
