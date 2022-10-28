@@ -12,23 +12,66 @@ import Signup from "../SignUp/Signup";
 import CourseDetails from "../CourseDetails/CourseDetails"
 
 export const router = createBrowserRouter([
+    // {
+    //   path: "/",
+    //   element: <Main />,
+    //   errorElement: <Notfound />,
+    //   children: [
+    //     { path: "/", element: <Home /> },
+    //     {
+    //       path: "/courses",
+    //       loader: () => fetch("http://localhost:5000/courses"),
+    //       element: <Courses />,
+    //     },
+    //     { path: "/blog", element: <Blog /> },
+    //     { path: "/signup", element: <Signup /> },
+    //     { path: "/login", element: <Login /> },
+    //     { path: "/faq", element: <Faq /> },
+    //     {
+    //       path: "/option/:id",
+    //       loader: async ({ params }) => {
+    //         return fetch(
+    //           `http://localhost:5000/courses/${params.id}`
+    //         );
+    //       },
+    //       element: <CourseDetails />,
+    //     },
+    //     {
+    //       path: "course/:name",
+    //       loader: async ({ params }) => {
+    //         return fetch(
+    //           `http://localhost:5000/courses/${params.name}`
+    //         );
+    //       },
+        
+    //       element: (
+    //         <PrivateRoute>
+    //           <CheekOut />
+    //         </PrivateRoute>
+    //       ),
+          
+    //     },
+    //   ],
+    // },
+
+
     {
       path: "/",
       element: <Main />,
       errorElement: <Notfound />,
       children: [
-        { path: "/", element: <Home /> },
+        { path: "/home", element: <Home /> },
         {
           path: "/courses",
           loader: () => fetch("http://localhost:5000/courses"),
           element: <Courses />,
         },
         { path: "/blog", element: <Blog /> },
-        { path: "/signup", element: <Signup /> },
+        { path: "/register", element: <Signup /> },
         { path: "/login", element: <Login /> },
         { path: "/faq", element: <Faq /> },
         {
-          path: "/option/:id",
+          path: "option/:id",
           loader: async ({ params }) => {
             return fetch(
               `http://localhost:5000/courses/${params.id}`
@@ -43,14 +86,19 @@ export const router = createBrowserRouter([
               `http://localhost:5000/courses/${params.name}`
             );
           },
-        
           element: (
             <PrivateRoute>
               <CheekOut />
             </PrivateRoute>
           ),
-          
         },
+        { index: true, element: <Home /> },
       ],
     },
+
+
+
+
+
+
   ]);

@@ -6,18 +6,12 @@ const CourseDetails = () => {
   const details = useLoaderData();
   console.log(details);
   const { name, description, picture, topics, duration, modules } = details;
-  //
+ 
   return (
     <div className="flex justify-center h-full  ">
       <div className="cart-container ">
-        <div className="flex justify-between my-3">
-          <img className="w-12 h-10 rounded-full" src={picture} alt="" />
-          <div className="uppercase text-3xl  font-bold">{name}</div>
-          <div>
-            <button>Download Pdf</button>
-          </div>
-        </div>
-        <div>
+      <div>
+      <h1 className="uppercase text-3xl text-center mb-2 font-bold">{name}</h1>
           <img
             className="rounded-xl mx-auto course-img mb-4"
             src={picture}
@@ -32,14 +26,9 @@ const CourseDetails = () => {
           <div>
             <span className="font-bold">Module:</span> {modules}
           </div>
+         
         </div>
-        <div className="mb-4">
-          <p className="font-bold">Topics</p>
-          {topics.map((topic, index) => (
-            <li key={index}>{topic}</li>
-          ))}
-        </div>
-        <div>{description}</div>
+        <p className="mt-2"><span className="font-bold">Description:</span>{description}</p>
         <div className="flex justify-between">
           <Link
             to="/courses"

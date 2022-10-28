@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../UserContext/UserContext";
-// import { AuthContext } from "./Context/UserContext";
+
 
 const CheekOut = () => {
   const { user } = useContext(AuthContext);
